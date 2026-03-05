@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMA Negeri 1 Sleman - Sejarah Sekolah</title>
+    <style>
+        /* CSS Variables & Reset */
+        :root {
+            --primary: #4682B4;
+            --primary-light: #eff6ff;
+            --border-color: #e2e8f0;
+            --card-bg: #ffffff;
+            --text-muted: #64748b;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* =========================================
+           STYLE DASAR (DARI SCRIPT ANDA)
+           ========================================= */
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header & Logo */
+        header img {
+            width: 100%;
+            display: flex;
+            object-fit: cover;
+            max-height: 300px; /* Opsional: Membatasi tinggi banner agar proporsional */
+            background-color: #ddd; /* Fallback warna jika gambar belum dimuat */
+        }
+
+        /* Navigasi */
+        nav {
+            width: 100%;
+            margin-top: 0px;
+            background-color: grey;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap; /* Agar menu turun ke bawah jika layar sempit */
+        }
+
+        nav ul li {
+            padding: 10px 20px;
+        }
+
+        nav {
+            width: 100%;
+            margin: 0;
+            background-color: black;
+        }
+
+        nav ul li a{
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+       nav ul li a:hover {
+            background-color: blue;
+            color: red;
+        }
+
+        /* Konten Utama */
+        main {
+            padding: 0px;
+            margin-top: 20px; /* Jarak antara navigasi dan konten */
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: orange;
+        }
+
+        .motto {
+            background-color: #4682B4;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 0px;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 14px;
+            margin-top: 40px;
+        }
+
+        /* =========================================
+           STYLE TAMBAHAN (UNTUK KONTEN SEJARAH)
+           ========================================= */
+        
+        .container {
+            max-width: 1024px;
+            margin: 0 auto;
+        }
+
+        /* Banner Judul Halaman */
+        .page-title-banner {
+            background-color: var(--primary);
+            color: white;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-title-banner h1 {
+            font-size: 2.5rem;
+            margin: 0 0 0.5rem 0;
+            color: white;
+        }
+
+        .page-title-banner p {
+            font-size: 1.125rem;
+            margin: 0;
+            color: #dbeafe;
+        }
+
+        /* Section Titles (Menggabungkan H2 orange Anda dengan style garis bawah) */
+        .section-title {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid orange;
+        }
+
+        /* Card (Box Pengantar) */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .text-justify { text-align: justify; }
+        .mb-4 { margin-bottom: 1rem; }
+
+        /* Tables */
+        .table-wrapper {
+            overflow-x: auto;
+            background-color: var(--card-bg);
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .data-table th, .data-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .data-table th {
+            background-color: #e2e8f0;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .data-table td { vertical-align: top; }
+        .data-table tbody tr:hover { background-color: #f1f5f9; }
+        .data-table tbody tr:nth-child(even) { background-color: #f8fafc; }
+
+        .col-date { width: 25%; font-weight: bold; }
+        .col-number { width: 4rem; text-align: center; }
+        .col-year { width: 10rem; text-align: center; }
+        .text-center { text-align: center; }
+
+        /* List Styling di dalam tabel */
+        .list-decimal {
+            margin-left: 1.25rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Layout Kepala Sekolah Grid */
+        .principal-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .principal-layout { grid-template-columns: 1fr 2fr; }
+        }
+
+        /* Biografi Sidebar */
+        .bio-card {
+            background-color: var(--primary-light);
+            border: 1px solid #dbeafe;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            position: sticky;
+            top: 1.5rem;
+            align-self: start;
+        }
+
+        .bio-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #1e3a8a;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #bfdbfe;
+        }
+
+        .bio-item { margin-bottom: 1rem; }
+        .bio-label { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; font-weight: bold; }
+        .bio-value { font-size: 1.125rem; font-weight: bold; margin-top: 0.25rem; }
+        .bio-list { margin-left: 1.25rem; margin-top: 0.25rem; }
+
+        /* Highlight Active Row */
+        .highlight-row {
+            background-color: var(--primary-light) !important;
+            border-left: 4px solid var(--primary);
+        }
+        .highlight-row td { color: #1e3a8a; font-weight: bold; }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header + Logo (Dari Script Anda) -->
+    <header>
+      <img src="website.jpg">
+        <!-- Navigasi -->
+        <nav>
+            <ul>
+                <li><a href="latihan1.9d.html">Beranda</a></li>
+                <li><a href="berita.html">Berita</a></li>
+                <li><a href="sejarahcopy.html">Sejarah Sekolah</a></li>
+                <li><a href="saranaprasarana.html">Sarana & Prasarana</a></li>
+                <li><a href="datamurid.html">Data Murid</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Konten (Digabungkan dengan class Container agar rapi di tengah) -->
+    <main class="container">
+        
+        <!-- Judul Halaman Internal -->
+        <div class="page-title-banner">
+            <h1>Sejarah Sekolah</h1>
+            <p>Menelusuri Jejak Langkah SMAN 1 Sleman dari Masa ke Masa</p>
+        </div>
+
+        <!-- Pengantar Section -->
+        <section class="card">
+            <p class="text-justify mb-4">
+                Sekolah yang sekarang dikenal dengan nama <strong>SMAN 1 Sleman</strong> ini mempunyai sejarah yang cukup panjang karena berdiri sejak 1963. Dalam perkembangannya, beberapa kali mengalami perubahan nomenklatur dan terakhir dipimpin oleh <strong>Yunan Helmi S, S.Pd., M.Pd.</strong> hingga sekarang. 
+            </p>
+            <p class="text-justify">
+                Karena terbatasnya lahan, gedung sekolah diperluas keatas berlantai 2 sehingga justru kelihatan megah. Saat ini mempunyai rombel sebanyak 21 kelas yang dilengkapi dengan LCD projector di setiap kelas, speaker untuk <em>listening comprehension</em> dan pengumuman, ceiling fan, IP-Cam, Lab. Fisika, Kimia, Biologi, Bahasa, studio Musik, studio Tari, ruang Multimedia, ruang TIK, ruang Karawitan berisi seperangkat gamelan Slendro Pelog serta Gelanggang Siswa yang Luas dan Nyaman.
+            </p>
+        </section>
+
+        <!-- Riwayat Perkembangan Section -->
+        <section>
+            <h2 class="section-title">Riwayat Perkembangan SMAN 1 Sleman</h2>
+            
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th class="col-date">Tahun/Tanggal</th>
+                            <th>Peristiwa / Keterangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="col-date">1 Agustus 1958</td>
+                            <td>
+                                Dibentuk Panitia Pendirian SMA Bagian B dan C di Sleman oleh para tokoh pendidikan lokal, terdiri dari:
+                                <ol class="list-decimal">
+                                    <li>Buchori (Bupati Sleman) - Ketua</li>
+                                    <li>Sahir Hadisuwarno (Lurah Triharjo) - Sekretaris</li>
+                                    <li>R. Sugiyopranoto (Lurah Pandowoharjo) - Bendahara</li>
+                                    <li>Projowidigdo (Penewu Sleman) - Anggota</li>
+                                    <li>A. Soekarno (Kepala SMP Bopkri Murangan) - Anggota</li>
+                                </ol>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-date">1960</td>
+                            <td>Yayasan Pendidikan SMA disempurnakan dengan Akta Notaris No. 32 Tahun 1960. Murid pertama 35 orang, belajar di aula Kantor Kecamatan Sleman.</td>
+                        </tr>
+                        <tr>
+                            <td class="col-date">1962</td>
+                            <td>PC GKBI membangun gedung sekolah di Caturharjo, kemudian diserahkan ke pemerintah setempat.</td>
+                        </tr>
+                        <tr>
+                            <td class="col-date">Februari 1962</td>
+                            <td>Gedung dengan 3 ruang kelas, 1 ruang guru, TU, kamar mandi, dan sumur digunakan oleh Yayasan Pendidikan SMA sebagai gedung SMA Sleman.</td>
+                        </tr>
+                        <tr>
+                            <td class="col-date">Juli 1962</td>
+                            <td>Menjadi filial SMA III B Negeri Yogyakarta berkat keuletan pengurus.</td>
+                        </tr>
+                        <tr>
+                            <td class="col-date">1 Agustus 1963</td>
+                            <td>Resmi menjadi SMA Negeri Sleman berdasarkan SK Mendikdasbud RI No. 59/S.K/B.III tanggal 25 Juli 1963. Nomor registrasi: 234.</td>
+                        </tr>
+                        <tr>
+                            <td class="col-date">1968</td>
+                            <td>Membuka kelas jauh di Donoharjo, Kecamatan Ngaglik karena banyaknya pendaftar.</td>
+                        </tr>
+                        <tr>
+                            <td class="col-date">1974/1975</td>
+                            <td>SMA Donoharjo berdiri sendiri (sekarang SMAN 1 Ngaglik), Rehabilitasi ruang belajar, perpustakaan, dan pembangunan laboratorium IPA.</td>
+                        </tr>
+                        <tr>
+                            <td class="col-date">20 Maret 1978</td>
+                            <td>Berdasarkan SK Dirjen Dikdasmen No: 98/C3.3/F.78, nama resmi menjadi SMAN 1 Sleman, seiring peresmian SMAN 2 Sleman.</td>
+                        </tr>
+                        <tr>
+                            <td class="col-date">1993-1997</td>
+                            <td>Mengampu pendirian SMA/SMU baru: <br> - SMA Pendowoharjo (1993, kini SMAN 2 Sleman) <br> - SMU Mlati (1995) <br> - SMU Tempel (1997).</td>
+                        </tr>
+                        <tr>
+                            <td class="col-date">7 Maret 1997</td>
+                            <td>Berdasarkan SK Mendikbud RI No. 35, nama berubah menjadi SMU Negeri 1 Sleman.</td>
+                        </tr>
+                        <tr>
+                            <td class="col-date">22 Oktober 2002</td>
+                            <td>Ditunjuk sebagai Mini Pilotting Pelaksana Terbatas Kurikulum Berbasis Kompetensi (KBK) untuk tahun ajaran 2003/2004.</td>
+                        </tr>
+                        <tr>
+                            <td class="col-date">24 Oktober 2002</td>
+                            <td>Menjadi salah satu SMA Andalan Kabupaten Sleman berdasarkan SK Kadisdikbud Sleman No. 420/2643.</td>
+                        </tr>
+                        <tr>
+                            <td class="col-date">1 Oktober 2003</td>
+                            <td>Kembali ke nama semula SMAN 1 Sleman berdasarkan SK No. 30/KEPKDH/X/2003.</td>
+                        </tr>
+                        <tr>
+                            <td class="col-date">9 Maret 2005</td>
+                            <td>Meraih status Akreditasi A dari BAS Provinsi DIY No. 9.1/BASDIY/III/2005.</td>
+                        </tr>
+                        <tr>
+                            <td class="col-date">2007-2008</td>
+                            <td>Ditunjuk sebagai pelaksana RSKM (Rintisan Sekolah Kategori Mandiri).</td>
+                        </tr>
+                        <tr>
+                            <td class="col-date">Mei 2009</td>
+                            <td>Ditunjuk sebagai R-SMA BI (Rintisan SMA Bertaraf Internasional).</td>
+                        </tr>
+                        <tr>
+                            <td class="col-date">Januari 2013</td>
+                            <td>SBI/RSBI dibubarkan oleh MK karena dinilai diskriminatif. Namun layanan dan PBM tetap berjalan seperti biasa.</td>
+                        </tr>
+                        <tr>
+                            <td class="col-date">2013-2015</td>
+                            <td>Ditunjuk sebagai Sekolah Rintisan dan Pelaksana Kurikulum 2013.</td>
+                        </tr>
+                        <tr>
+                            <td class="col-date">2015</td>
+                            <td>Dengan surat PSMA No. 2024/D4.2/KU/2015 ditunjuk sebagai Sekolah Model SNP (Standar Nasional Pendidikan).</td>
+                        </tr>
+                        <tr>
+                            <td class="col-date">2016-2017</td>
+                            <td>Dengan surat Subdit Kurikulum PSMA No. 2327/D4.2/KU/2016 ditunjuk sebagai Sekolah Rujukan pemenuhan SNP.</td>
+                        </tr>
+                        <tr>
+                            <td class="col-date">2018</td>
+                            <td>Berdasarkan SK Direktur PSMA No. 1304.4/D4.2/DM/2018 ditunjuk sebagai Pelaksana Program Pengembangan SMA Rujukan Tahun 2018.</td>
+                        </tr>
+                        <tr>
+                            <td class="col-date">2022</td>
+                            <td>Berdasarkan SK Dirjen PAUDDIKDASMEN No: 7883/C/HK.03.01/2022 ditetapkan sebagai Sekolah Penggerak Angkatan III.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Kepala Sekolah Section -->
+        <section>
+            <h2 class="section-title">Kepala Sekolah</h2>
+            
+            <div class="principal-layout">
+                
+                <!-- Biografi Singkat -->
+                <aside>
+                    <div class="bio-card">
+                        <h3 class="bio-title">Biografi Singkat</h3>
+                        
+                        <div class="bio-item">
+                            <p class="bio-label">Nama</p>
+                            <p class="bio-value">Yunan Helmi S., S.Pd., M.Pd.</p>
+                        </div>
+                        
+                        <div class="bio-item">
+                            <p class="bio-label">Pendidikan</p>
+                            <ul class="bio-list">
+                                <li><strong>S1:</strong> IKIP Negeri Yogyakarta</li>
+                                <li><strong>S2:</strong> Universitas Negeri Yogyakarta</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bio-item">
+                            <p class="bio-label">Riwayat Jabatan</p>
+                            <p style="margin-top: 0.25rem;">Kepala Sekolah SMAN 1 Ngaglik</p>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Daftar Kepala Sekolah -->
+                <div>
+                    <h3 style="font-size: 1.25rem; font-weight: bold; margin-bottom: 1rem; margin-top: 0;">Daftar Kepala Sekolah dari Masa ke Masa</h3>
+                    
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th class="col-number">NO</th>
+                                    <th>NAMA KEPALA SEKOLAH</th>
+                                    <th class="col-year">TAHUN</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">1</td>
+                                    <td>R. Soekar</td>
+                                    <td class="text-center">1963-1973</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">2</td>
+                                    <td>Drs. Sidarta Budihardja</td>
+                                    <td class="text-center">1973-1974</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">3</td>
+                                    <td>Drs. Moedjijono</td>
+                                    <td class="text-center">1974-1975</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">4</td>
+                                    <td>Drs. Muzamil Khalimi, B.Sc.</td>
+                                    <td class="text-center">1975-1978</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">5</td>
+                                    <td>Drs. Abdullah Purwodarsono</td>
+                                    <td class="text-center">1978-1981</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">6</td>
+                                    <td>Drs. Soekemi</td>
+                                    <td class="text-center">1981-1984</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">7</td>
+                                    <td>R. Soewarno, B.A.</td>
+                                    <td class="text-center">1984-1990</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">8</td>
+                                    <td>Suhartono, B.Sc.</td>
+                                    <td class="text-center">1991-1993</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">9</td>
+                                    <td>Sukardal</td>
+                                    <td class="text-center">1993-1995</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">10</td>
+                                    <td>R. Sugito, B.A.</td>
+                                    <td class="text-center">1995-1998</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">11</td>
+                                    <td>Drs. Tolchah Mansur</td>
+                                    <td class="text-center">1998-2004</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">12</td>
+                                    <td>Drs Tulus Rahajo</td>
+                                    <td class="text-center">2004-2012</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">13</td>
+                                    <td>Dra Hermintarsih</td>
+                                    <td class="text-center">2012-2018</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">14</td>
+                                    <td>Fadmiyati, S.Pd. M.Pd.</td>
+                                    <td class="text-center">2018-2024</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">15</td>
+                                    <td>Sarwono, S.Pd., M.Pd.</td>
+                                    <td class="text-center">2024-2025</td>
+                                </tr>
+                                <tr class="highlight-row">
+                                    <td class="text-center">16</td>
+                                    <td>Yunan Helmi S., S.Pd, M.Pd</td>
+                                    <td class="text-center" style="font-size: 0.875rem;">2025-Sekarang</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer (Dari Script Anda) -->
+    <footer>
+        <p>&copy; 2026 SMAN 1 Sleman. Informasi Sejarah Sekolah.</p>
+    </footer>
+
+</body>
+</html>
